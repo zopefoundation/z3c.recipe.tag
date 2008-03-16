@@ -36,7 +36,9 @@ setup(
     version='0.1.0-dev',
     author="Ignas Mikalajūnas",
     description="Generate ctags from eggs for development.",
-    long_description=read('README.txt')
+    long_description=(read('README.txt')
+                      +'\n\n'+
+                      read('CHANGES.txt')),
     license="ZPL 2.1",
     maintainer="Paul Carduner",
     maintainer_email="zope-dev@zope.org",

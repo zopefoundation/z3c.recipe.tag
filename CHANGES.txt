@@ -1,0 +1,10 @@
+=======
+CHANGES
+=======
+
+0.1.0 (2008-03-16)
+------------------
+
+- Initial release.
+
+  * buildout recipe for generating ctags of eggs used.
