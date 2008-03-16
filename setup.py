@@ -33,7 +33,7 @@ def read(*rnames):
 
 setup(
     name="z3c.recipe.tag",
-    version='0.1.0-dev',
+    version='0.1.0',
     author="Ignas Mikalajūnas",
     description="Generate ctags from eggs for development.",
     long_description=(read('README.txt')
