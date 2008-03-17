@@ -48,7 +48,7 @@ setup(
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python"],
-    url='http://svn.zope.org/Sanbox/pcardune/z3c.recipe.tag/',
+    url='http://pypi.python.org/pypi/z3c.recipe.tag/',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c','z3c.recipe'],
