@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.2.0 (unreleased)
+0.2.0 (2008-08-28)
 ------------------
 
 * Allow command-line choices for what files to build, and what languages ctags
