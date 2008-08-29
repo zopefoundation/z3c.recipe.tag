@@ -98,9 +98,7 @@ class Builder:
 
     def __call__(self, targets=None, languages=None):
         if not targets:
-            targets = ('idutils', 'ctags-vi', 'ctags-emacs') # legacy behavior
-            if languages is None:
-                languages = '-JavaScript' # legacy behavior
+            targets = ('idutils', 'ctags_vi', 'ctags_emacs') # legacy behavior
         self.languages = languages or ''
         results = {}
         for target in targets:
@@ -155,7 +153,9 @@ def append_const(option, opt_str, value, parser, const):
 def build_tags():
     parser = optparse.OptionParser()
     parser.add_option('-l', '--languages', dest='languages',
-                      help='ctags comma-separated list of languages')
+                      default='-JavaScript',
+                      help='ctags comma-separated list of languages. '
+                      'defaults to ``-JavaScript``')
     parser.add_option('-e', '--ctags-emacs', action='callback',
                       callback=append_const, callback_args=('ctags_emacs',),
                       help='flag to build emacs ctags ``TAGS`` file')
