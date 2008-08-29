@@ -17,6 +17,11 @@ id-utils.  In Ubuntu, you can install these with apt-get::
 
   $ sudo apt-get install exuberant-ctags id-utils
 
+On a Mac, download and install ``port`` from http://www.macports.org/ and then
+install ctags and utils in this way::
+
+  $ sudo port install ctags idutils
+
 How to use this recipe
 ----------------------
 
@@ -32,6 +37,44 @@ then run like this::
 
   $ ./bin/tags
 
-This script produces a file called ``TAGS`` in the directory from
-which you ran the script.  You can then use this file in your editor
-of choice (e.g. emacs).
+By default, this script produces three files in the directory from
+which you ran the script: 
+
+- a ctags file called ``TAGS`` for use by emacs,
+- a ctags file called ``tags`` for use by vi, and
+- an idutils file called ``ID`` for use by either.
+
+You can then use these file in your editor of choice.
+
+Optionally, you can select which files to build.  The following is the output
+of ``./bin/tags --help``::
+
+    usage: build_tags [options]
+
+    options:
+      -h, --help            show this help message and exit
+      -l LANGUAGES, --languages=LANGUAGES
+                            ctags comma-separated list of languages
+      -e, --ctags-emacs     flag to build emacs ctags ``TAGS`` file
+      -v, --ctags-vi        flag to build vi ctags ``tags`` file
+      -b, --ctags-bbedit    flag to build bbedit ctags ``tags`` file
+      -i, --idutils         flag to build idutils ``ID`` file
+
+(BBEdit_ is a Macintosh text editor.)
+
+Legacy support
+--------------
+
+To follow a legacy pattern in this package, running ``./bin/tags`` without
+options assumes a --languages value of "-JavaScript".  Passing *any* option
+to ``./bin/tags`` will turn this behavior off.  Thus, these two commands are
+effectively identical, making ctags files that exclude JavaScript::
+
+  $ ./bin/tags
+  $ ./bin/tags -iev --languages=-JavaScript
+
+But this command will produce ctags files that include JavaScript.
+
+  $ ./bin/tags -iev
+
+.. _BBEdit: http://barebones.com/products/bbedit/

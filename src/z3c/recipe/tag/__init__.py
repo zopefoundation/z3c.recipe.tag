@@ -11,8 +11,11 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import os, sys
+import os
+import optparse
 import pkg_resources
+import subprocess
+import sys
 
 import zc.buildout.easy_install
 import zc.recipe.egg
@@ -80,20 +83,96 @@ env_template = """os.environ['%s'] = %r
 """
 
 
+def getpath(candidates):
+    paths = os.environ['PATH'].split(os.pathsep)
+    for c in candidates:
+        for p in paths:
+            full = os.path.join(p, c)
+            if os.path.exists(full):
+                return full
+
+class Builder:
+    def __init__(self):
+        self.paths = [path for path in sys.path
+                      if not path.endswith('.zip')]
+
+    def __call__(self, targets=None, languages=None):
+        if not targets:
+            targets = ('idutils', 'ctags-vi', 'ctags-emacs') # legacy behavior
+            if languages is None:
+                languages = '-JavaScript' # legacy behavior
+        self.languages = languages or ''
+        results = {}
+        for target in targets:
+            tool_candidates, arguments, source, destination = getattr(
+                self, '_build_%s' % (target,))()
+            arguments[0:0] = [getpath(tool_candidates)]
+            res = subprocess.call(arguments)
+            if res == 0:
+                res = subprocess.call(['mv', source, destination])
+            results[target] = res
+        return results
+
+    def _build_idutils(self):
+        return [['mkid'],
+                ['-m', 
+                 pkg_resources.resource_filename(
+                    "z3c.recipe.tag", "id-lang.map"),
+                 '-o',
+                 'ID.new'] + self.paths,
+                'ID.new',
+                'ID']
+
+    def _build_ctags_vi(self):
+        res = [['ctags-exuberant', 'ctags'],
+               ['-R',
+                '-f',
+                'tags.new'] + self.paths,
+                'tags.new',
+                'tags']
+        if self.languages:
+            res[1][0:0] = ['--languages=%s' % self.languages]
+        return res
+
+    def _build_ctags_emacs(self):
+        res = self._build_ctags_vi()
+        res[1][0:0] = ['-e']
+        res[3] = 'TAGS'
+        return res
+
+    def _build_ctags_bbedit(self):
+        res = self._build_ctags_vi()
+        res[1][0:0] = [
+            '--excmd=number', '--tag-relative=no', '--fields=+a+m+n+S']
+        return res
+
+def append_const(option, opt_str, value, parser, const):
+    # 'append_const' action added in Py 2.5, and we're in 2.4 :-(
+    if getattr(parser.values, 'targets', None) is None:
+        parser.values.targets = []
+    parser.values.targets.append(const)
+
 def build_tags():
-    paths = [path for path in sys.path
-             if not path.endswith('.zip')]
-    paths = " ".join(paths)
-
-    map = pkg_resources.resource_filename("z3c.recipe.tag", "id-lang.map")
-    command = "mkid -m %s -o ID.new %s" % (map, paths)
-    if os.system(command) == 0:
-        os.system("mv ID.new ID")
-
-    command = "ctags-exuberant -R --languages=-JavaScript -f tags.new %s" % paths
-    if os.system(command) == 0:
-        os.system("mv tags.new tags")
-
-    command = "ctags-exuberant -e -R --languages=-JavaScript -f TAGS.new %s" % paths
-    if os.system(command) == 0:
-        os.system("mv TAGS.new TAGS")
+    parser = optparse.OptionParser()
+    parser.add_option('-l', '--languages', dest='languages',
+                      help='ctags comma-separated list of languages')
+    parser.add_option('-e', '--ctags-emacs', action='callback',
+                      callback=append_const, callback_args=('ctags_emacs',),
+                      help='flag to build emacs ctags ``TAGS`` file')
+    parser.add_option('-v', '--ctags-vi',  action='callback',
+                      callback=append_const, callback_args=('ctags_vi',),
+                      help='flag to build vi ctags ``tags`` file')
+    parser.add_option('-b', '--ctags-bbedit', action='callback',
+                      callback=append_const, callback_args=('ctags_bbedit',),
+                      help='flag to build bbedit ctags ``tags`` file')
+    parser.add_option('-i', '--idutils', action='callback',
+                      callback=append_const, callback_args=('idutils',),
+                      help='flag to build idutils ``ID`` file')
+    options, args = parser.parse_args()
+    if args:
+        parser.error('no arguments accepted')
+    targets = getattr(options, 'targets', None)
+    if (targets and 'ctags_bbedit' in targets and 'ctags_vi' in targets):
+        parser.error('cannot build both vi and bbedit ctags files (same name)')
+    builder = Builder()
+    builder(targets, options.languages)

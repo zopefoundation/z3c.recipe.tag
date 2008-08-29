@@ -33,7 +33,7 @@ def read(*rnames):
 
 setup(
     name="z3c.recipe.tag",
-    version='0.1.1-dev',
+    version='0.2.0b2',
     author="Ignas Mikalajūnas",
     description="Generate ctags from eggs for development.",
     long_description=(read('README.txt')
@@ -57,6 +57,8 @@ setup(
                       #these two come from apt-get!
                       #'id-utils',
                       #'ctags-exuberant'
+                      # alternately, on Mac, use macports (macports.org) and
+                      # ``sudo port install ctags idutils``
                       'zc.recipe.egg'],
     entry_points="""
     [zc.buildout]
