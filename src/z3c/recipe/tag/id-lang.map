@@ -29,6 +29,9 @@
 *.zcml                  text
 *.pt                    text
 *.zpt                   text
+*.js                    text
+*.css                   text
+*.rst                   text
 
 # Backup files
 *~			IGNORE
