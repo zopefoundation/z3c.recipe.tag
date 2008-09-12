@@ -62,6 +62,7 @@ setup(
                       'zc.recipe.egg'],
     entry_points="""
     [zc.buildout]
+    default = z3c.recipe.tag:TagsMaker
     tags = z3c.recipe.tag:TagsMaker
 
     [console_scripts]

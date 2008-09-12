@@ -7,6 +7,12 @@ CHANGES
 
 * Also index Javascript, CSS and ReStructuredText files with id-utils.
 
+* Define a default entry point for zc.buildout, so you can simply say
+
+    [ctags]
+    recipe = z3c.recipe.tag
+
+
 0.2.0 (2008-08-28)
 ------------------
 
