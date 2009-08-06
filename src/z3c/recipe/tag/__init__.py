@@ -90,6 +90,8 @@ def getpath(candidates):
             full = os.path.join(p, c)
             if os.path.exists(full):
                 return full
+    raise RuntimeError(
+        'Can\'t find executable for any of: %s' % candidates)
 
 class Builder:
     def __init__(self):
