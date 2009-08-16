@@ -2,8 +2,10 @@
 CHANGES
 =======
 
-0.3.0 (unreleased)
+0.3.0 (2009-08-16)
 ------------------
+
+* Add support for using this recipe as a `paver <http://www.blueskyonmars.com/projects/paver/>`_ task.
 
 * Also index Javascript, CSS and ReStructuredText files with id-utils.
 

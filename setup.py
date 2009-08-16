@@ -34,7 +34,7 @@ def read(*rnames):
 setup(
     name="z3c.recipe.tag",
     version='0.3.0dev',
-    author="Ignas Mikalajūnas",
+    author="Ignas Mikalajūnas and the Zope Community",
     description="Generate ctags from eggs for development.",
     long_description=(read('README.txt')
                       +'\n\n'+
@@ -43,11 +43,15 @@ setup(
     maintainer="Paul Carduner",
     maintainer_email="zope-dev@zope.org",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python"],
+        "Programming Language :: Python",
+        "Framework :: Buildout",
+        "Topic :: Software Development :: Build Tools",
+        "Topic :: Text Editors :: Emacs",
+        "Topic :: Utilities"],
     url='http://pypi.python.org/pypi/z3c.recipe.tag/',
     packages=find_packages('src'),
     package_dir={'': 'src'},
