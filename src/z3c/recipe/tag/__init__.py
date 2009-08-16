@@ -115,7 +115,7 @@ class Builder:
 
     def _build_idutils(self):
         return [['mkid'],
-                ['-m', 
+                ['-m',
                  pkg_resources.resource_filename(
                     "z3c.recipe.tag", "id-lang.map"),
                  '-o',
@@ -152,7 +152,7 @@ def append_const(option, opt_str, value, parser, const):
         parser.values.targets = []
     parser.values.targets.append(const)
 
-def build_tags():
+def build_tags(args=None):
     parser = optparse.OptionParser()
     parser.add_option('-l', '--languages', dest='languages',
                       default='-JavaScript',
@@ -170,7 +170,7 @@ def build_tags():
     parser.add_option('-i', '--idutils', action='callback',
                       callback=append_const, callback_args=('idutils',),
                       help='flag to build idutils ``ID`` file')
-    options, args = parser.parse_args()
+    options, args = parser.parse_args(args)
     if args:
         parser.error('no arguments accepted')
     targets = getattr(options, 'targets', None)
@@ -178,3 +178,17 @@ def build_tags():
         parser.error('cannot build both vi and bbedit ctags files (same name)')
     builder = Builder()
     builder(targets, options.languages)
+
+try:
+    import paver.easy
+except ImportError:
+    HAS_PAVER = False
+else:
+    HAS_PAVER = True
+
+if HAS_PAVER:
+    @paver.easy.task
+    @paver.easy.consume_args
+    def tags(args):
+        """Build tags database file for emacs, vim, or bbedit"""
+        build_tags(args)

@@ -1,5 +1,8 @@
+==============
 z3c.recipe.tag
 ==============
+
+.. contents::
 
 Introduction
 ------------
@@ -25,6 +28,9 @@ install ctags and utils in this way::
 How to use this recipe
 ----------------------
 
+With Buildout
+.............
+
 Suppose you have an egg called ``MyApplication``.  To use this recipe with
 buildout, you would add the following to the ``buildout.cfg`` file::
 
@@ -38,7 +44,7 @@ then run like this::
   $ ./bin/tags
 
 By default, this script produces three files in the directory from
-which you ran the script: 
+which you ran the script:
 
 - a ctags file called ``TAGS`` for use by emacs,
 - a ctags file called ``tags`` for use by vi, and
@@ -50,7 +56,7 @@ Optionally, you can select which files to build.  The following is the output
 of ``./bin/tags --help``::
 
     usage: build_tags [options]
-    
+
     options:
       -h, --help            show this help message and exit
       -l LANGUAGES, --languages=LANGUAGES
@@ -60,6 +66,20 @@ of ``./bin/tags --help``::
       -v, --ctags-vi        flag to build vi ctags ``tags`` file
       -b, --ctags-bbedit    flag to build bbedit ctags ``tags`` file
       -i, --idutils         flag to build idutils ``ID`` file
+
+With Paver
+..........
+
+If you are using `Paver
+<http://www.blueskyonmars.com/projects/paver/>`_ and already have
+z3c.recipe.tag installed, then all you have to do is add this line to
+your ``pavement.py`` file::
+
+  import z3c.recipe.tag
+
+And then run the ``z3c.recipe.tag.tags`` task from the command line::
+
+  $ paver z3c.recipe.tag.tags
 
 (BBEdit_ is a Macintosh text editor.)
 
