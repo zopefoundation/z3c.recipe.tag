@@ -21,7 +21,7 @@ id-utils.  In Ubuntu, you can install these with apt-get::
   $ sudo apt-get install exuberant-ctags id-utils
 
 On a Mac, download and install ``port`` from http://www.macports.org/ and then
-install ctags and utils in this way::
+install ctags and idutils in this way::
 
   $ sudo port install ctags idutils
 
@@ -80,6 +80,26 @@ your ``pavement.py`` file::
 And then run the ``z3c.recipe.tag.tags`` task from the command line::
 
   $ paver z3c.recipe.tag.tags
+
+Additional Resources
+--------------------
+
+For additional information on using tags tables with different editors
+see the following websites:
+
+- **Emacs**: http://www.gnu.org/software/emacs/manual/html_node/emacs/Tags.html
+
+  - to jump to the location of a tag, type ``M-x find-tag`` and the
+    name of the tag.  Or use ``M-.`` to jump to the tag matching the token
+    the cursor is currently on.  The first time you do this, you will
+    be prompted for the location of the TAGS file.
+
+- **VIM**: http://vimdoc.sourceforge.net/htmldoc/tagsrch.html
+
+- **BBEdit**: http://pine.barebones.com/manual/BBEdit_9_User_Manual.pdf
+  Chapter 14, page 324
+
+For more information on ctags, visit http://ctags.sourceforge.net/
 
 (BBEdit_ is a Macintosh text editor.)
 
