@@ -30,8 +30,10 @@
 *.pt                    text
 *.zpt                   text
 *.js                    text
+*.html                  text
 *.css                   text
 *.rst                   text
+*.mako                  text
 
 # Backup files
 *~			IGNORE

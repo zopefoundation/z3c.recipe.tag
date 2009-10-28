@@ -7,6 +7,9 @@ CHANGES
 
 * ...
 
+* Also index Mako and HTML files with id-utils.
+
+
 0.3.0 (2009-08-16)
 ------------------
 
