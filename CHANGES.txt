@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.4.0 (unreleased)
+0.4.0 (2009-08-29)
 ------------------
 
 * Support new script features from zc.buildout 1.5 and higher.  This version
