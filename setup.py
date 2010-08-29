@@ -33,7 +33,7 @@ def read(*rnames):
 
 setup(
     name="z3c.recipe.tag",
-    version='0.3.1dev',
+    version='0.4.0dev',
     author="Ignas Mikalajūnas and the Zope Community",
     description="Generate ctags from eggs for development.",
     long_description=(read('README.txt')
@@ -57,13 +57,13 @@ setup(
     package_dir={'': 'src'},
     namespace_packages=['z3c','z3c.recipe'],
     install_requires=['setuptools',
-                      'zc.buildout',
+                      'zc.buildout >= 1.5.0',
                       #these two come from apt-get!
                       #'id-utils',
                       #'ctags-exuberant'
                       # alternately, on Mac, use macports (macports.org) and
                       # ``sudo port install ctags idutils``
-                      'zc.recipe.egg'],
+                      'z3c.recipe.scripts >= 1.0.0'],
     entry_points="""
     [zc.buildout]
     default = z3c.recipe.tag:TagsMaker

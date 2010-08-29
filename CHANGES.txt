@@ -2,10 +2,11 @@
 CHANGES
 =======
 
-0.3.1 (unreleased)
+0.4.0 (unreleased)
 ------------------
 
-* ...
+* Support new script features from zc.buildout 1.5 and higher.  This version
+  requires zc.buildout 1.5 or higher.
 
 * Also index Mako and HTML files with id-utils.
 
@@ -17,7 +18,7 @@ CHANGES
 
 * Also index Javascript, CSS and ReStructuredText files with id-utils.
 
-* Define a default entry point for zc.buildout, so you can simply say
+* Define a default entry point for zc.buildout, so you can simply say::
 
     [ctags]
     recipe = z3c.recipe.tag
