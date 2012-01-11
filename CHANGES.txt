@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.4.1 (unreleased)
+0.4.1 (2012-01-11)
 ------------------
 
 * Skip nonexistent sys.path directories to avoid ctags warnings.
