@@ -94,7 +94,7 @@ def getpath(candidates):
 class Builder:
     def __init__(self):
         self.paths = [path for path in sys.path
-                      if not path.endswith('.zip')]
+                      if os.path.isdir(path)]
 
     def __call__(self, targets=None, languages=None):
         if not targets:

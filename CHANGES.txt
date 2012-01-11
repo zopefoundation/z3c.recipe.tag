@@ -5,7 +5,8 @@ CHANGES
 0.4.1 (unreleased)
 ------------------
 
-(no changes)
+* Skip nonexistent sys.path directories to avoid ctags warnings.
+
 
 0.4.0 (2010-08-29)
 ------------------
