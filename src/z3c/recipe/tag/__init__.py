@@ -64,6 +64,7 @@ class TagsMaker(object):
             include_site_packages=self._delegated.include_site_packages,
             exec_sitecustomize=self._delegated.exec_sitecustomize,
             relative_paths=self._delegated._relative_paths,
+            script_arguments=options.get('defaults', []),
             script_initialization=initialization,
             ))
 

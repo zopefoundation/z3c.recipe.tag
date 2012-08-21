@@ -2,10 +2,11 @@
 CHANGES
 =======
 
-0.4.2 (unreleased)
+0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add 'defaults' option to allow adding default command line options (e.g. to
+  set '-v' by default)
 
 
 0.4.1 (2012-01-11)
