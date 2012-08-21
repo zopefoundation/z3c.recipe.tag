@@ -125,6 +125,7 @@ class Builder:
     def _build_ctags_vi(self):
         res = [['ctags-exuberant', 'ctags'],
                ['-R',
+                '--python-kinds=-i',
                 '-f',
                 'tags.new'] + self.paths,
                 'tags.new',

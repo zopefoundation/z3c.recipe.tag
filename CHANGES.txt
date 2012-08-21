@@ -5,6 +5,8 @@ CHANGES
 0.5 (unreleased)
 ------------------
 
+- Exclude Python import statements by default from showing up as tags.
+
 - Add 'defaults' option to allow adding default command line options (e.g. to
   set '-v' by default)
 
