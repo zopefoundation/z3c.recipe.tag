@@ -56,6 +56,10 @@ class TagsMaker(object):
         if initialization_section:
             initialization += initialization_section
 
+        arguments = options.get('defaults', '')
+        if arguments:
+            arguments = arguments + ' + sys.argv[1:]'
+
         generated.extend(zc.buildout.easy_install.sitepackage_safe_scripts(
             self.buildout['buildout']['bin-directory'], ws,
             options['executable'], options['parts-directory'],
@@ -64,7 +68,7 @@ class TagsMaker(object):
             include_site_packages=self._delegated.include_site_packages,
             exec_sitecustomize=self._delegated.exec_sitecustomize,
             relative_paths=self._delegated._relative_paths,
-            script_arguments=options.get('defaults', []),
+            script_arguments=arguments,
             script_initialization=initialization,
             ))
 
