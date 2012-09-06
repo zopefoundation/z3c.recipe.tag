@@ -67,6 +67,13 @@ of ``./bin/tags --help``::
       -b, --ctags-bbedit    flag to build bbedit ctags ``tags`` file
       -i, --idutils         flag to build idutils ``ID`` file
 
+If you'd like to set command line options by default (e.g. to limit building to ctags-vi by default) you can pass the ``default`` option in your buildout::
+
+  [tags]
+  recipe = z3c.recipe.tag:tags
+  eggs = MyApplication
+  default = ['-v']
+
 With Paver
 ..........
 
