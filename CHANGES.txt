@@ -2,8 +2,8 @@
 CHANGES
 =======
 
-0.5 (unreleased)
-------------------
+0.5 (2012-09-06)
+----------------
 
 - Exclude Python import statements by default from showing up as tags.
 
