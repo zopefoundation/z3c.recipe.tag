@@ -5,7 +5,8 @@ CHANGES
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Update manifest to allow package generation fron non-VCS export. Counters the
+  0.5 "brown bag" release.
 
 
 0.5 (2012-09-06)
