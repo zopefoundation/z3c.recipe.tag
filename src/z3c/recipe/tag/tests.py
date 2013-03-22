@@ -62,8 +62,8 @@ checker = renormalizing.RENormalizing([
     zc.buildout.testing.normalize_path,
     # zope.whatever-1.2.3-py2.7.egg -> zope.whatever-pyN.N.egg
     (re.compile('-[^ /]+-py\d[.]\d(-\S+)?.egg'), '-pyN.N.egg'),
-    # #!/path/to/whatever/python -> #!/usr/bin/python
-    (re.compile('#![^\n]+/python'), '#!/usr/bin/python'),
+    # #!/path/to/whatever/python3.2mu -> #!/usr/bin/python
+    (re.compile('#![^\n]+/python[0-9.mu]*'), '#!/usr/bin/python'),
     # location of this source tree
     (re.compile("""['"][^\n"']+z3c.recipe.tag[^\n"']*['"],"""),
      "'/z3c.recipe.tag/src',"),
@@ -83,5 +83,6 @@ def test_suite():
     return unittest.TestSuite([
         doctest.DocTestSuite(
             setUp=setUp, tearDown=tearDown, checker=checker,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS),
+            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|
+                        doctest.REPORT_NDIFF),
     ])

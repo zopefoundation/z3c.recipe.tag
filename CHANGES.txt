@@ -7,6 +7,9 @@ CHANGES
 
 - Support and require zc.buildout 2.0.
 
+- Add supported Python version (3.6, 2.7, 3.2, 3.3) classifiers to
+  setup.py
+
 
 0.6 (2012-09-07)
 ----------------
