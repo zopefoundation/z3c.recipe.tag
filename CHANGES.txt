@@ -5,7 +5,7 @@ CHANGES
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Support and require zc.buildout 2.0.
 
 
 0.6 (2012-09-07)

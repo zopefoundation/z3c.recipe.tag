@@ -18,7 +18,7 @@ import subprocess
 import sys
 
 import zc.buildout.easy_install
-import z3c.recipe.scripts.scripts
+import zc.recipe.egg
 
 class TagsMaker(object):
 
@@ -28,20 +28,27 @@ class TagsMaker(object):
         self.options = options
         # We do this early so the "extends" functionality works before we get
         # to the other options below.
-        self._delegated = z3c.recipe.scripts.scripts.Base(
-            buildout, name, options)
+        self._delegated = zc.recipe.egg.Egg(buildout, name, options)
         options['script'] = os.path.join(buildout['buildout']['bin-directory'],
                                          options.get('script', self.name),
                                          )
+        if not options.get('working-directory', ''):
+            options['location'] = os.path.join(
+                buildout['buildout']['parts-directory'], name)
 
     def install(self):
         options = self.options
         generated = []
         eggs, ws = self._delegated.working_set(('z3c.recipe.tag',))
 
-        if not os.path.exists(options['parts-directory']):
-            os.mkdir(options['parts-directory'])
-            generated.append(options['parts-directory'])
+        wd = options.get('working-directory', '')
+        if not wd:
+            wd = options['location']
+            if os.path.exists(wd):
+                assert os.path.isdir(wd)
+            else:
+                os.mkdir(wd)
+            generated.append(wd)
 
         initialization = initialization_template % (
             self.buildout['buildout']['directory'])
@@ -60,16 +67,12 @@ class TagsMaker(object):
         if arguments:
             arguments = arguments + ' + sys.argv[1:]'
 
-        generated.extend(zc.buildout.easy_install.sitepackage_safe_scripts(
-            self.buildout['buildout']['bin-directory'], ws,
-            options['executable'], options['parts-directory'],
-            reqs=[(options['script'], 'z3c.recipe.tag', 'build_tags')],
+        generated.extend(zc.buildout.easy_install.scripts(
+            [(options['script'], 'z3c.recipe.tag', 'build_tags')],
+            ws, options['executable'],
+            self.buildout['buildout']['bin-directory'],
             extra_paths=self._delegated.extra_paths,
-            include_site_packages=self._delegated.include_site_packages,
-            exec_sitecustomize=self._delegated.exec_sitecustomize,
-            relative_paths=self._delegated._relative_paths,
-            script_arguments=arguments,
-            script_initialization=initialization,
+            initialization=initialization,
             ))
 
         return generated

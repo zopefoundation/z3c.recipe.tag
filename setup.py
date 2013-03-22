@@ -13,21 +13,20 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Setup for z3c.recipe.tag package
-"""
+"""Setup for z3c.recipe.tag"""
 
-# Check python version
+# Check Python version
 import sys
-if sys.version_info < (2, 4):
-    print >> sys.stderr, '%s: need Python 2.4 or later.' % sys.argv[0]
-    print >> sys.stderr, 'Your python is %s' % sys.version
-    sys.exit(1)
+if sys.version_info < (2, 6):
+    sys.exit("%s: need Python 2.6 or later.\nYour python is %s."
+             % (sys.argv[0], sys.version))
 
 import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 setup(
     name="z3c.recipe.tag",
@@ -54,22 +53,30 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c','z3c.recipe'],
-    install_requires=['setuptools',
-                      'zc.buildout >= 1.5.0',
-                      #these two come from apt-get!
-                      #'id-utils',
-                      #'ctags-exuberant'
-                      # alternately, on Mac, use macports (macports.org) and
-                      # ``sudo port install ctags idutils``
-                      'z3c.recipe.scripts >= 1.0.0'],
-    entry_points="""
-    [zc.buildout]
-    default = z3c.recipe.tag:TagsMaker
-    tags = z3c.recipe.tag:TagsMaker
-
-    [console_scripts]
-    build_tags = z3c.recipe.tag:build_tags
-    """,
+    extras_require=dict(
+        test=[
+            'zope.testing',
+        ],
+    ),
+    install_requires=[
+        'setuptools',
+        'zc.buildout >= 2.0',
+        'zc.recipe.egg',
+        # these two come from apt-get:
+        #   'id-utils',
+        #   'ctags-exuberant'
+        # alternately, on Mac, use macports (macports.org) and
+        #   ``sudo port install ctags idutils``
+    ],
+    entry_points={
+        'zc.buildout': [
+            'default = z3c.recipe.tag:TagsMaker',
+            'tags = z3c.recipe.tag:TagsMaker',
+        ],
+        'console_scripts': [
+            'build_tags = z3c.recipe.tag:build_tags',
+        ],
+    },
     zip_safe=False,
     include_package_data=True,
-    )
+)
