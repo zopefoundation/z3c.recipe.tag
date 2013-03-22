@@ -10,7 +10,7 @@ Introduction
 ------------
 
 This recipe generates a TAGS database file that can be used with a
-number of different editors to quickly lookup class and function
+number of different editors to quickly look up class and function
 definitions in your package's source files and egg dependencies.
 
 Dependencies
@@ -37,7 +37,7 @@ Suppose you have an egg called ``MyApplication``.  To use this recipe with
 buildout, you would add the following to the ``buildout.cfg`` file::
 
   [tags]
-  recipe = z3c.recipe.tag:tags
+  recipe = z3c.recipe.tag
   eggs = MyApplication
 
 This produces a script file in the ``bin/`` directory which you can
@@ -50,9 +50,9 @@ which you ran the script:
 
 - a ctags file called ``TAGS`` for use by emacs,
 - a ctags file called ``tags`` for use by vi, and
-- an idutils file called ``ID`` for use by either.
+- an idutils file called ``ID`` for use by id-utils (gid, lid).
 
-You can then use these file in your editor of choice.
+You can then use these files in your editor of choice.
 
 Optionally, you can select which files to build.  The following is the output
 of ``./bin/tags --help``::
@@ -69,12 +69,25 @@ of ``./bin/tags --help``::
       -b, --ctags-bbedit    flag to build bbedit ctags ``tags`` file
       -i, --idutils         flag to build idutils ``ID`` file
 
-If you'd like to set command line options by default (e.g. to limit building to ctags-vi by default) you can pass the ``default`` option in your buildout::
+If you'd like to set command line options by default (e.g. to limit
+building to ctags-vi by default) you can pass the ``default`` option in
+your buildout.cfg::
 
   [tags]
-  recipe = z3c.recipe.tag:tags
+  recipe = z3c.recipe.tag
   eggs = MyApplication
   default = ['-v']
+
+With virtualenv
+...............
+
+You can use this with `virtualenv
+<https://pypi.python.org/pypi/virtualenv>`__ too::
+
+  my_venv/bin/pip install z3c.recipe.tag
+  my_venv/bin/build_tags
+
+this will build a tags file for all the packages installed in that virtualenv.
 
 With Paver
 ..........
@@ -113,6 +126,11 @@ For more information on ctags, visit http://ctags.sourceforge.net/
 (BBEdit_ is a Macintosh text editor.)
 
 .. _BBEdit: http://barebones.com/products/bbedit/
+
+For more information about GNU id-utils (basically a local text
+indexing/search engine; think of it as a very fast version of ``grep
+-w``), see the `id-utils manual
+<http://www.gnu.org/software/idutils/manual/idutils.html>`__.
 
 .. |buildstatus| image:: https://api.travis-ci.org/zopefoundation/z3c.recipe.tag.png?branch=master
 .. _buildstatus: https://travis-ci.org/zopefoundation/z3c.recipe.tag
