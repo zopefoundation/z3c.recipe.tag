@@ -51,7 +51,7 @@ setup(
         "Topic :: Software Development :: Build Tools",
         "Topic :: Text Editors :: Emacs",
         "Topic :: Utilities"],
-    url='http://pypi.python.org/pypi/z3c.recipe.tag/',
+    url='https://github.com/zopefoundation/z3c.recipe.tag',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c','z3c.recipe'],
