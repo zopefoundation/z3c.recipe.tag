@@ -1,4 +1,5 @@
 include *.txt
 include buildout.cfg
 include .travis.yml
+include tox.ini
 recursive-include src id-lang.map

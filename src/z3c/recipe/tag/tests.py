@@ -1,4 +1,5 @@
 import doctest
+import os
 import re
 import unittest
 
@@ -77,6 +78,19 @@ checker = renormalizing.RENormalizing([
     # error messages, let's just suppress them
     (re.compile("Not found: .*buildouttests/[a-zA-Z0-9.]+/\n"), ''),
 ])
+
+if os.getenv('RUNNING_UNDER_TOX'):
+    # tox installs our test dependencies into the virtualenv,
+    # and zc.buildout has no site isolation, so it finds them there,
+    # so it doesn't add them to sys.path in the generated scripts
+    checker += renormalizing.RENormalizing([
+        (re.compile("\s*'/sample-buildout/eggs/zc.recipe.egg-pyN.N.egg',\n"),
+         ''),
+        (re.compile("\s*'/sample-buildout/eggs/zc.buildout-pyN.N.egg',\n"),
+         ''),
+        (re.compile("\s*'/sample-buildout/eggs/distribute-pyN.N.egg',\n"),
+         ''),
+    ])
 
 
 def test_suite():
