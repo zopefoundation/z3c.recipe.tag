@@ -2,6 +2,8 @@
 z3c.recipe.tag
 ==============
 
+|buildstatus|_
+
 .. contents::
 
 Introduction
@@ -111,3 +113,6 @@ For more information on ctags, visit http://ctags.sourceforge.net/
 (BBEdit_ is a Macintosh text editor.)
 
 .. _BBEdit: http://barebones.com/products/bbedit/
+
+.. |buildstatus| image:: https://api.travis-ci.org/zopefoundation/z3c.recipe.tag.png?branch=master
+.. _buildstatus: https://travis-ci.org/zopefoundation/z3c.recipe.tag
