@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.7 (unreleased)
+0.7 (2013-03-22)
 ----------------
 
 - Support and require zc.buildout 2.0.
