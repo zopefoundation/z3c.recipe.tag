@@ -5,7 +5,7 @@ CHANGES
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add --tag-relative option to support relative tag generation.
 
 
 0.7 (2013-03-22)
