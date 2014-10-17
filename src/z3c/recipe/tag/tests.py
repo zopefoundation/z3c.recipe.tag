@@ -33,7 +33,7 @@ def doctest_tags_recipe():
           '/z3c.recipe.tag/src',
           '/sample-buildout/eggs/zc.recipe.egg-pyN.N.egg',
           '/sample-buildout/eggs/zc.buildout-pyN.N.egg',
-          '/sample-buildout/eggs/distribute-pyN.N.egg',
+          '/sample-buildout/eggs/setuptools-pyN.N.egg',
           ]
         <BLANKLINE>
         import os
