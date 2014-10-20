@@ -24,6 +24,7 @@ if sys.version_info < (2, 6):
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
@@ -47,6 +48,7 @@ setup(
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
         "Framework :: Buildout",
         "Topic :: Software Development :: Build Tools",
         "Topic :: Text Editors :: Emacs",
@@ -54,7 +56,7 @@ setup(
     url='https://github.com/zopefoundation/z3c.recipe.tag',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    namespace_packages=['z3c','z3c.recipe'],
+    namespace_packages=['z3c', 'z3c.recipe'],
     extras_require=dict(
         test=[
             'zope.testing',
