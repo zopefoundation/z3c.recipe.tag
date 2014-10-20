@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-0.8 (unreleased)
+0.8 (2014-10-20)
 ----------------
 
 - Add --tag-relative option to support relative tag generation.
