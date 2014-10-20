@@ -31,7 +31,7 @@ def read(*rnames):
 
 setup(
     name="z3c.recipe.tag",
-    version='0.8',
+    version='0.8.1.dev0',
     author="Ignas Mikalajūnas and the Zope Community",
     description="Generate ctags from eggs for development.",
     long_description=read('README.rst') + '\n\n' + read('CHANGES.rst'),
