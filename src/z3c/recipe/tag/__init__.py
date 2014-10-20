@@ -100,14 +100,22 @@ def getpath(candidates):
         'Can\'t find executable for any of: %s' % candidates)
 
 class Builder:
-    def __init__(self):
-        self.paths = [path for path in sys.path
-                      if os.path.isdir(path)]
+    def get_relpaths(self, paths):
+        working_dir = os.getcwd()
+        return [os.path.relpath(path, working_dir) for path in paths]
 
-    def __call__(self, targets=None, languages=None):
+    def __call__(self, targets=None, languages=None, tag_relative=False):
         if not targets:
             targets = ('idutils', 'ctags_vi', 'ctags_emacs') # legacy behavior
         self.languages = languages or ''
+        self.tag_relative = tag_relative
+        paths = [path for path in sys.path
+                 if os.path.isdir(path)]
+        if self.tag_relative:
+            # ctags will ignore --tag-relative=yes for absolute paths so we
+            # must pass relative paths to it.
+            paths = self.get_relpaths(paths)
+        self.paths = paths
         results = {}
         for target in targets:
             tool_candidates, arguments, source, destination = getattr(
@@ -135,10 +143,12 @@ class Builder:
                 '--python-kinds=-i',
                 '-f',
                 'tags.new'] + self.paths,
-                'tags.new',
-                'tags']
+               'tags.new',
+               'tags']
         if self.languages:
             res[1][0:0] = ['--languages=%s' % self.languages]
+        if self.tag_relative:
+            res[1][0:0] = ['--tag-relative=yes']
         return res
 
     def _build_ctags_emacs(self):
@@ -149,6 +159,10 @@ class Builder:
 
     def _build_ctags_bbedit(self):
         res = self._build_ctags_vi()
+        try:
+            res[1].remove('--tag-relative=yes')
+        except ValueError:
+            pass
         res[1][0:0] = [
             '--excmd=number', '--tag-relative=no', '--fields=+a+m+n+S']
         return res
@@ -177,6 +191,11 @@ def build_tags(args=None):
     parser.add_option('-i', '--idutils', action='callback',
                       callback=append_const, callback_args=('idutils',),
                       help='flag to build idutils ``ID`` file')
+    parser.add_option('-r', '--tag-relative', action='store_true',
+                      dest='tag_relative', default=False,
+                      help=('generate tags with paths relative to'
+                            ' tags file instead of absolute paths'
+                            ' (works with vim tags only)'))
     options, args = parser.parse_args(args)
     if args:
         parser.error('no arguments accepted')
@@ -184,7 +203,8 @@ def build_tags(args=None):
     if (targets and 'ctags_bbedit' in targets and 'ctags_vi' in targets):
         parser.error('cannot build both vi and bbedit ctags files (same name)')
     builder = Builder()
-    builder(targets, options.languages)
+    builder(targets, languages=options.languages,
+            tag_relative=options.tag_relative)
 
 try:
     import paver.easy
