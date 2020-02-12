@@ -5,7 +5,9 @@ CHANGES
 0.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.5 up to 3.8.
+
+- Drop support for Python 2.6, and 3.2 up to 3.4.
 
 
 0.8 (2014-10-20)

@@ -15,12 +15,6 @@
 ##############################################################################
 """Setup for z3c.recipe.tag"""
 
-# Check Python version
-import sys
-if sys.version_info < (2, 6):
-    sys.exit("%s: need Python 2.6 or later.\nYour python is %s."
-             % (sys.argv[0], sys.version))
-
 import os
 from setuptools import setup, find_packages
 
@@ -44,11 +38,11 @@ setup(
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.2",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Framework :: Buildout",
         "Topic :: Software Development :: Build Tools",
         "Topic :: Text Editors :: Emacs",
@@ -60,6 +54,7 @@ setup(
     extras_require=dict(
         test=[
             'zope.testing',
+            'zope.testrunner',
         ],
     ),
     install_requires=[
