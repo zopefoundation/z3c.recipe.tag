@@ -20,6 +20,7 @@ import sys
 import zc.buildout.easy_install
 import zc.recipe.egg
 
+
 class TagsMaker(object):
 
     def __init__(self, buildout, name, options):
@@ -73,7 +74,7 @@ class TagsMaker(object):
             self.buildout['buildout']['bin-directory'],
             extra_paths=self._delegated.extra_paths,
             initialization=initialization,
-            ))
+        ))
 
         return generated
 
@@ -99,6 +100,7 @@ def getpath(candidates):
     raise RuntimeError(
         'Can\'t find executable for any of: %s' % candidates)
 
+
 class Builder:
     def get_relpaths(self, paths):
         working_dir = os.getcwd()
@@ -106,7 +108,7 @@ class Builder:
 
     def __call__(self, targets=None, languages=None, tag_relative=False):
         if not targets:
-            targets = ('idutils', 'ctags_vi', 'ctags_emacs') # legacy behavior
+            targets = ('idutils', 'ctags_vi', 'ctags_emacs')  # legacy behavior
         self.languages = languages or ''
         self.tag_relative = tag_relative
         paths = [path for path in sys.path
@@ -128,14 +130,18 @@ class Builder:
         return results
 
     def _build_idutils(self):
-        return [['mkid'],
-                ['-m',
-                 pkg_resources.resource_filename(
+        return [
+            [
+                'mkid'
+            ], [
+                '-m',
+                pkg_resources.resource_filename(
                     "z3c.recipe.tag", "id-lang.map"),
-                 '-o',
-                 'ID.new'] + self.paths,
-                'ID.new',
-                'ID']
+                '-o',
+                'ID.new'
+            ] + self.paths,
+            'ID.new',
+            'ID']
 
     def _build_ctags_vi(self):
         res = [['ctags-exuberant', 'ctags'],
@@ -167,11 +173,13 @@ class Builder:
             '--excmd=number', '--tag-relative=no', '--fields=+a+m+n+S']
         return res
 
+
 def append_const(option, opt_str, value, parser, const):
     # 'append_const' action added in Py 2.5, and we're in 2.4 :-(
     if getattr(parser.values, 'targets', None) is None:
         parser.values.targets = []
     parser.values.targets.append(const)
+
 
 def build_tags(args=None):
     parser = optparse.OptionParser()
@@ -182,7 +190,7 @@ def build_tags(args=None):
     parser.add_option('-e', '--ctags-emacs', action='callback',
                       callback=append_const, callback_args=('ctags_emacs',),
                       help='flag to build emacs ctags ``TAGS`` file')
-    parser.add_option('-v', '--ctags-vi',  action='callback',
+    parser.add_option('-v', '--ctags-vi', action='callback',
                       callback=append_const, callback_args=('ctags_vi',),
                       help='flag to build vi ctags ``tags`` file')
     parser.add_option('-b', '--ctags-bbedit', action='callback',
@@ -205,6 +213,7 @@ def build_tags(args=None):
     builder = Builder()
     builder(targets, languages=options.languages,
             tag_relative=options.tag_relative)
+
 
 try:
     import paver.easy
