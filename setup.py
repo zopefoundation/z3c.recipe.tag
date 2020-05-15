@@ -23,6 +23,7 @@ def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
 
+
 setup(
     name="z3c.recipe.tag",
     version='0.9.0.dev0',
