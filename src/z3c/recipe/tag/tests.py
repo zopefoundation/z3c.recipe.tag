@@ -10,10 +10,6 @@ from zope.testing import renormalizing
 def doctest_tags_recipe():
     """Test for z3c.recipe.tag
 
-        >>> write = write  # noqa: F821 (undefined name)
-        >>> system = system  # noqa: F821 (undefined name)
-        >>> cat = cat  # noqa: F821 (undefined name)
-        >>> join = join  # noqa: F821 (undefined name)
         >>> write('buildout.cfg',
         ... '''
         ... [buildout]
@@ -81,7 +77,7 @@ checker = renormalizing.RENormalizing([
     (re.compile("Not found: .*buildouttests/[a-zA-Z0-9.]+/\n"), ''),
 ])
 
-if os.getenv('RUNNING_UNDER_TOX') or os.getenv('TRAVIS'):
+if os.getenv('RUNNING_UNDER_TOX') or os.getenv('TRAVIS'):  # pragma: nocover
     # tox installs our test dependencies into the virtualenv,
     # and zc.buildout has no site isolation, so it finds them there,
     # so it doesn't add them to sys.path in the generated scripts
