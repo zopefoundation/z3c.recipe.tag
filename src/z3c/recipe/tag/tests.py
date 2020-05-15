@@ -35,9 +35,7 @@ def doctest_tags_recipe():
         import sys
         sys.path[0:0] = [
           '/z3c.recipe.tag/src',
-          '/sample-buildout/eggs/zc.recipe.egg-pyN.N.egg',
-          '/sample-buildout/eggs/zc.buildout-pyN.N.egg',
-          '/sample-buildout/eggs/setuptools-pyN.N.egg',
+          '/z3c.recipe.tag/src',
           ]
         <BLANKLINE>
         import os
