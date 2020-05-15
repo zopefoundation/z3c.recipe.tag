@@ -219,10 +219,10 @@ try:
     import paver.easy
 except ImportError:
     HAS_PAVER = False
-else:
+else:  # pragma: nocover
     HAS_PAVER = True
 
-if HAS_PAVER:
+if HAS_PAVER:  # pragma: nocover
     @paver.easy.task
     @paver.easy.consume_args
     def tags(args):
