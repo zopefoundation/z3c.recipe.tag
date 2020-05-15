@@ -81,7 +81,7 @@ checker = renormalizing.RENormalizing([
     (re.compile("Not found: .*buildouttests/[a-zA-Z0-9.]+/\n"), ''),
 ])
 
-if os.getenv('RUNNING_UNDER_TOX'):
+if os.getenv('RUNNING_UNDER_TOX') or os.getenv('TRAVIS'):
     # tox installs our test dependencies into the virtualenv,
     # and zc.buildout has no site isolation, so it finds them there,
     # so it doesn't add them to sys.path in the generated scripts
