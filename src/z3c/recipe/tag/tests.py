@@ -95,6 +95,7 @@ if os.getenv('RUNNING_UNDER_TOX') or os.getenv('TRAVIS'):
         (re.compile(r"\s*'/sample-buildout/eggs/setuptools-pyN.N.egg',\n"),
          ''),
         (re.compile(r"'.*/site-packages'"), "'/z3c.recipe.tag/src'"),
+        (re.compile(r"#!/.*/bin/pypy.*"), "#!/usr/bin/python"),
     ])
 
 
