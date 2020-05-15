@@ -94,7 +94,7 @@ if os.getenv('RUNNING_UNDER_TOX'):
          ''),
         (re.compile(r"\s*'/sample-buildout/eggs/setuptools-pyN.N.egg',\n"),
          ''),
-        (re.compile(r"\s*'.*/site-packages',',\n"),
+        (re.compile(r"\s*'.*/site-packages',\n"),
          ''),
     ])
 
