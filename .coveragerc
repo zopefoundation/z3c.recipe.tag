@@ -1,9 +1,0 @@
-[run]
-source = z3c.recipe.tag
-parallel = true
-
-[paths]
-source =
-    src/
-    .tox/*/lib/python*/site-packages/
-    .tox/pypy*/site-packages/
