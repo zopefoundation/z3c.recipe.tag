@@ -136,7 +136,7 @@ class Builder:
             ], [
                 '-m',
                 pkg_resources.resource_filename(
-                    "z3c.recipe.tag", "id-lang.map"),
+                    "z3c.recipe.tag", "id-lang.map.txt"),
                 '-o',
                 'ID.new'
             ] + self.paths,
