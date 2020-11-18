@@ -132,5 +132,5 @@ indexing/search engine; think of it as a very fast version of ``grep
 -w``), see the `id-utils manual
 <http://www.gnu.org/software/idutils/manual/idutils.html>`__.
 
-.. |buildstatus| image:: https://api.travis-ci.com/zopefoundation/z3c.recipe.tag.png?branch=master
-.. _buildstatus: https://travis-ci.com/zopefoundation/z3c.recipe.tag
+.. |buildstatus| image:: https://github.com/zopefoundation/z3c.recipe.tag/workflows/tests/badge.svg
+.. _buildstatus: https://github.com/zopefoundation/z3c.recipe.tag/actions?query=workflow%3Atests
