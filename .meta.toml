@@ -2,7 +2,7 @@
 # https://github.com/zopefoundation/meta/tree/master/config/buildout-recipe
 [meta]
 template = "buildout-recipe"
-commit-id = "9da00eee91ae120118a4bd1e20cd7bd006c67b41"
+commit-id = "d543915c25050c8389ff5b5e68766edacbc476b6"
 
 [python]
 with-pypy = true
