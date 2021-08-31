@@ -2,14 +2,22 @@
 # https://github.com/zopefoundation/meta/tree/master/config/buildout-recipe
 [meta]
 template = "buildout-recipe"
-commit-id = "cba598ba16bcbc037c23fcee642fe2869a818dea"
+commit-id = "7f5b73fe9d2bcbabafaef5f69dd97408a142d42a"
 
 [python]
 with-pypy = true
 with-legacy-python = true
-with-docs = false
 with-sphinx-doctests = false
-with-appveyor = false
+with-windows = false
+with-future-python = false
 
 [coverage]
 fail-under = 40
+
+[tox]
+use-flake8 = true
+
+[manifest]
+additional-rules = [
+    "recursive-include src *.txt",
+    ]
