@@ -16,7 +16,9 @@
 """Setup for z3c.recipe.tag"""
 
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(*rnames):
@@ -39,18 +41,18 @@ setup(
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Buildout",
         "Topic :: Software Development :: Build Tools",
         "Topic :: Text Editors :: Emacs",
-        "Topic :: Utilities"],
+        "Topic :: Utilities",
+    ],
     url='https://github.com/zopefoundation/z3c.recipe.tag',
     packages=find_packages('src'),
     package_dir={'': 'src'},

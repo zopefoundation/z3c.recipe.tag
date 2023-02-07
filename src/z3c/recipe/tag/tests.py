@@ -31,7 +31,6 @@ def doctest_tags_recipe():
         import sys
         sys.path[0:0] = [
           '/z3c.recipe.tag/src',
-          '/z3c.recipe.tag/src',
           ]
         <BLANKLINE>
         import os

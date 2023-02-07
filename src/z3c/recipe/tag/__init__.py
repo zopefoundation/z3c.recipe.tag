@@ -11,11 +11,12 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-import os
 import optparse
-import pkg_resources
+import os
 import subprocess
 import sys
+
+import pkg_resources
 
 import zc.buildout.easy_install
 import zc.recipe.egg
