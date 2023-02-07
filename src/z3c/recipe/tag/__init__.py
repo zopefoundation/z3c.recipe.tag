@@ -22,7 +22,7 @@ import zc.buildout.easy_install
 import zc.recipe.egg
 
 
-class TagsMaker(object):
+class TagsMaker:
 
     def __init__(self, buildout, name, options):
         self.buildout = buildout
@@ -122,7 +122,7 @@ class Builder:
         results = {}
         for target in targets:
             tool_candidates, arguments, source, destination = getattr(
-                self, '_build_%s' % (target,))()
+                self, '_build_{}'.format(target))()
             arguments[0:0] = [getpath(tool_candidates)]
             res = subprocess.call(arguments)
             if res == 0:

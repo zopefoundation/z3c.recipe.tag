@@ -58,7 +58,7 @@ def tearDown(test):
 
 checker = renormalizing.RENormalizing([
     zc.buildout.testing.normalize_path,
-    # zope.whatever-1.2.3-py2.7.egg -> zope.whatever-pyN.N.egg
+    # zope.whatever-1.2.3-py3.7.egg -> zope.whatever-pyN.N.egg
     (re.compile(r'-[^ /]+-py\d[.]\d(-\S+)?.egg'), '-pyN.N.egg'),
     # #!/path/to/whatever/python3.2mu -> #!/usr/bin/python
     (re.compile('#![^\n]+/python[0-9.mu]*'), '#!/usr/bin/python'),
@@ -76,7 +76,7 @@ checker = renormalizing.RENormalizing([
     (re.compile("Not found: .*buildouttests/[a-zA-Z0-9.]+/\n"), ''),
 ])
 
-if os.getenv('RUNNING_UNDER_TOX') or os.getenv('TRAVIS'):  # pragma: nocover
+if os.getenv('RUNNING_UNDER_TOX'):  # pragma: no cover
     # tox installs our test dependencies into the virtualenv,
     # and zc.buildout has no site isolation, so it finds them there,
     # so it doesn't add them to sys.path in the generated scripts

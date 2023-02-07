@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- Encoding: utf-8 -*-
 ##############################################################################
 #
 # Copyright (c) 2007 Zope Foundation and Contributors.
@@ -34,7 +33,7 @@ setup(
     long_description=read('README.rst') + '\n\n' + read('CHANGES.rst'),
     license="ZPL 2.1",
     maintainer="Paul Carduner",
-    maintainer_email="zope-dev@zope.org",
+    maintainer_email="zope-dev@zope.dev",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -57,6 +56,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c', 'z3c.recipe'],
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'zope.testing',
@@ -65,7 +65,7 @@ setup(
     ),
     install_requires=[
         'setuptools',
-        'zc.buildout >= 2.0',
+        'zc.buildout >= 3.0',
         'zc.recipe.egg',
         # these two come from apt-get:
         #   'id-utils',
