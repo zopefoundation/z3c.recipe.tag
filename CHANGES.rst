@@ -2,12 +2,14 @@
 CHANGES
 =======
 
-0.9.0 (unreleased)
-------------------
+1.0 (unreleased)
+----------------
 
-- Add support for Python 3.5 up to 3.9.
+- Drop support for Python < 3.7.
 
-- Drop support for Python 2.6, and 3.2 up to 3.4.
+- Add support for Python 3.7 up to 3.11.
+
+- Require ``zc.buildout >= 3``.
 
 
 0.8 (2014-10-20)

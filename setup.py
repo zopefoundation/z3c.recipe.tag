@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- Encoding: utf-8 -*-
 ##############################################################################
 #
 # Copyright (c) 2007 Zope Foundation and Contributors.
@@ -16,7 +15,9 @@
 """Setup for z3c.recipe.tag"""
 
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(*rnames):
@@ -26,35 +27,36 @@ def read(*rnames):
 
 setup(
     name="z3c.recipe.tag",
-    version='0.9.0.dev0',
+    version='1.0.dev0',
     author="Ignas Mikalajūnas and the Zope Community",
     description="Generate ctags from eggs for development.",
     long_description=read('README.rst') + '\n\n' + read('CHANGES.rst'),
     license="ZPL 2.1",
     maintainer="Paul Carduner",
-    maintainer_email="zope-dev@zope.org",
+    maintainer_email="zope-dev@zope.dev",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Framework :: Buildout",
         "Topic :: Software Development :: Build Tools",
         "Topic :: Text Editors :: Emacs",
-        "Topic :: Utilities"],
+        "Topic :: Utilities",
+    ],
     url='https://github.com/zopefoundation/z3c.recipe.tag',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c', 'z3c.recipe'],
+    python_requires='>=3.7',
     extras_require=dict(
         test=[
             'zope.testing',
@@ -63,7 +65,7 @@ setup(
     ),
     install_requires=[
         'setuptools',
-        'zc.buildout >= 2.0',
+        'zc.buildout >= 3.0',
         'zc.recipe.egg',
         # these two come from apt-get:
         #   'id-utils',
