@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.0 (unreleased)
+1.0 (2023-02-09)
 ----------------
 
 - Drop support for Python < 3.7.
