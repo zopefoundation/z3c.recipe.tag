@@ -58,7 +58,7 @@ def tearDown(test):
 
 checker = renormalizing.RENormalizing([
     zc.buildout.testing.normalize_path,
-    # zope.whatever-1.2.3-py3.7.egg -> zope.whatever-pyN.N.egg
+    # zope.whatever-1.4.5-py3.7.egg -> zope.whatever-pyN.N.egg
     (re.compile(r'-[^ /]+-py\d[.]\d(-\S+)?.egg'), '-pyN.N.egg'),
     # #!/path/to/whatever/python3.2mu -> #!/usr/bin/python
     (re.compile('#![^\n]+/python[0-9.mu]*'), '#!/usr/bin/python'),
@@ -69,7 +69,7 @@ checker = renormalizing.RENormalizing([
     #   Couldn't find index page for 'zc.recipe.egg' (maybe misspelled?)
     # error messages, let's just suppress them
     (re.compile("Couldn't find index page for '[a-zA-Z0-9.]+' "
-     r"\(maybe misspelled\?\)\n"), ''),
+                r"\(maybe misspelled\?\)\n"), ''),
     # I've no idea what causes these
     #   Not found: /tmp/tmpJKH0LKbuildouttests/zc.buildout/
     # error messages, let's just suppress them
@@ -96,10 +96,10 @@ if os.getenv('RUNNING_UNDER_TOX'):  # pragma: no cover
 
 def test_suite():
     return unittest.TestSuite([
-        doctest.DocTestSuite(
-            setUp=setUp, tearDown=tearDown, checker=checker,
-            optionflags=(
-                doctest.NORMALIZE_WHITESPACE
-                | doctest.ELLIPSIS
-                | doctest.REPORT_NDIFF)),
+        doctest.DocTestSuite(setUp=setUp,
+                             tearDown=tearDown,
+                             checker=checker,
+                             optionflags=(doctest.NORMALIZE_WHITESPACE
+                                          | doctest.ELLIPSIS
+                                          | doctest.REPORT_NDIFF)),
     ])
