@@ -138,7 +138,7 @@ class Builder:
                     '-m',
                     pkg_resources.resource_filename(
                         "z3c.recipe.tag", "id-lang.map.txt"), '-o', 'ID.new'
-                ] + self.paths, 'ID.new', 'ID']
+        ] + self.paths, 'ID.new', 'ID']
 
     def _build_ctags_vi(self):
         res = [['ctags-exuberant', 'ctags'],
